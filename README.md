@@ -7,7 +7,7 @@ Homebrew casks maintained by R3D42.
 Install the signed and notarized app on Apple Silicon Macs running macOS 15 or newer:
 
 ```bash
-brew install --cask c5vcpq5gsr-alt/tap/lm-studio-status-widget
+brew install --cask r3d42-git/tap/lm-studio-status-widget
 ```
 
 The app checks a local LM Studio server. Install LM Studio separately, start its local server, and use the
