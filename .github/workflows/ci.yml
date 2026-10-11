@@ -1,0 +1,29 @@
+name: Cask checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: macos-15
+    timeout-minutes: 15
+    env:
+      HOMEBREW_NO_ANALYTICS: "1"
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Register the exact pull-request checkout as a tap
+        run: |
+          tap_dir="$(brew --repository)/Library/Taps/r3d42-git"
+          mkdir -p "$tap_dir"
+          ln -s "$GITHUB_WORKSPACE" "$tap_dir/homebrew-tap"
+      - name: Audit casks and release metadata
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
+        run: brew audit --cask --online --tap r3d42-git/tap
+      - name: Verify downloadable artifact checksums
+        run: brew fetch --cask r3d42-git/tap/lm-studio-status-widget
