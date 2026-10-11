@@ -1,6 +1,6 @@
 cask "lm-studio-status-widget" do
-  version "1.2.0"
-  sha256 "740c6c7f16f8883fe6de2426531842e512348262369cee3bdf2c13146d3a3fba"
+  version "1.2.1"
+  sha256 "6e1e120f5af7eb943de8e9120a173a2cd8e1dbfe38846ec14adab54a0830e513"
 
   url "https://github.com/r3d42-git/lm-studio-status-widget/releases/download/v#{version}/LMStudioStatusWidget-#{version}-macOS-arm64.zip"
   name "LM Studio Status Widget"
